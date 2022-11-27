@@ -6,11 +6,12 @@ export class CdkTestS3Stack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
-    // The code that defines your stack goes here
-
-    // example resource
-    // const queue = new sqs.Queue(this, 'CdkTestS3Queue', {
-    //   visibilityTimeout: cdk.Duration.seconds(300)
-    // });
+    new cdk.aws_s3.Bucket(this, "CdkTestS3Stack", {
+      versioned: true,
+      bucketName: "cdk-test-s3-stack-20221128",
+      removalPolicy: cdk.RemovalPolicy.DESTROY,
+      blockPublicAccess: cdk.aws_s3.BlockPublicAccess.BLOCK_ALL,
+      autoDeleteObjects: true,
+    });
   }
 }
